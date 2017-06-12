@@ -1,9 +1,7 @@
 #!/usr/bin/python
-#GPIO24.py	            
-# - made RPi to a object for light  
-# - could use it to enable and close electic by GPIO
-# - fonction : on , off , flash and clean
-
+#GpioForLight.py	
+# - control GPIO using command 
+# - argv:PIN NUMBER , action cmd(on,off,flash)
 import RPi.GPIO as GPIO
 import time
 import sys
@@ -14,7 +12,6 @@ import sys
 class GpioForLights:
 	def __init__(self,PinNum,Alert=0):
 		#initialization :set output pin
-		#self.clean()
 		self.ledPin = int(PinNum)
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(self.ledPin, GPIO.OUT)
@@ -33,16 +30,16 @@ class GpioForLights:
 
 	def on(self):		
   		GPIO.output(self.ledPin, False)
-		
+
 		#alert text
 		if self.AlertOn:
-			print str(self.ledPin)+" pin Set Output On"
+			print "Set Output On"
 	def off(self):		
   		GPIO.output(self.ledPin, True)
-		
+
 		#alert text
 		if self.AlertOn:
-			print str(self.ledPin)+" pin Set Output Off"
+			print "Set Output Off"
 	
 	def flash(self,rtime=3,SleepTime=1):
 		print str(self.ledPin)+" Pin Starting flash... "
@@ -55,12 +52,20 @@ class GpioForLights:
 		  print "Set Output False"
 		  GPIO.output(self.ledPin, True)
 		  time.sleep(SleepTime)
-		self.clean()
+
 		#alert text
 		if self.AlertOn:
 			print "Set Output Off"
-	def clean(self):
-		GPIO.cleanup()
-    
-T = GpioForLights(12)
-T.flash()
+
+#main program
+pin = GpioForLights(sys.argv[1],1)
+
+
+if sys.argv[2] == "off":
+	pin.off()
+elif sys.argv[2] == "on":
+	pin.on()
+elif sys.argv[2] == "flash":
+	pin.flash()
+else:
+	print "not Found Command"
