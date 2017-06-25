@@ -29,13 +29,13 @@ class GpioForLights:
 
 
 	def on(self):		
-  		GPIO.output(self.ledPin, False)
+  		GPIO.output(self.ledPin, True)
 
 		#alert text
 		if self.AlertOn:
 			print "Set Output On"
 	def off(self):		
-  		GPIO.output(self.ledPin, True)
+  		GPIO.output(self.ledPin, False)
 
 		#alert text
 		if self.AlertOn:
@@ -46,11 +46,11 @@ class GpioForLights:
 		for i in range(rtime):
 
 		  print "Set Output True"
-		  GPIO.output(self.ledPin, False)
+		  GPIO.output(self.ledPin, True)
 		  time.sleep(SleepTime)
 
 		  print "Set Output False"
-		  GPIO.output(self.ledPin, True)
+		  GPIO.output(self.ledPin, False)
 		  time.sleep(SleepTime)
 
 		#alert text
