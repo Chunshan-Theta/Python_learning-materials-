@@ -20,8 +20,8 @@
 	    config end
 	*/
   
-  $sql = "INSERT INTO `devicedata` (`Pin_id`, `cost`, `Name`) VALUES (".$Pin_id.", ".$cost.", '".$Name."');";
-  echo $sql;
+        $sql = "INSERT INTO `devicedata` (`Pin_id`, `cost`, `Name`) VALUES (".$Pin_id.", ".$cost.", '".$Name."');";
+        echo $sql;
 	Insert_mysqlQuery($sql);
 	
 	
