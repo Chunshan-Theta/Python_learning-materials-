@@ -36,14 +36,14 @@
 	}
   
 	function Show($sql) {	
-		//建立PDO連線
-		$_link = new PDO('mysql:host='.DB_PATH.';charset=UTF8;dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-		//設定編碼
-		$_link->query('SET NAMES UTF8')->execute();
-		$query = $_link->prepare($sql);
-		$query->execute();
-		$re = $query->fetchAll(PDO::FETCH_OBJ);
-		print_r($re);
+	    //建立PDO連線
+	    $_link = new PDO('mysql:host='.DB_PATH.';charset=UTF8;dbname='.DB_NAME, DB_USER, DB_PASSWORD);
+	    //設定編碼
+	    $_link->query('SET NAMES UTF8')->execute();
+	    $query = $_link->prepare($sql);
+	    $query->execute();
+	    $re = $query->fetchAll(PDO::FETCH_OBJ);
+	    print_r($re);
 	}
 	
 	
